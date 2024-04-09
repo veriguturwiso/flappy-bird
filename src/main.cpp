@@ -165,7 +165,7 @@ int main()
             {
                 if (!failed)
                 {
-                    pillar_set.offset.x -= 1.5f;
+                    pillar_set.offset.x -= 1.5f * delta_time;
                 }
 
                 if (!failed && !pillar_set.point_gathered && 300.0f + flappy_bird.size.x / 2.0f > pillar_set.offset.x + flappy_bird_pillar.size.x / 2.0f)
