@@ -122,9 +122,15 @@ int main()
     bool space_just_pressed = false;
 
     float fail_time;
+
+    float previous_time;
     
     while (!glfwWindowShouldClose(window))
     {
+        float current_time = glfwGetTime();
+        float delta_time = (current_time - previous_time) * 240;
+        previous_time = current_time;
+
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -209,12 +215,12 @@ int main()
                 }
             }
 
-            flappy_bird_rotation += 0.357f;
+            flappy_bird_rotation += 0.357f * delta_time;
 
             if (flappy_bird_y < renderer::render_size().y)
             {
-                flappy_bird_velocity_y += 0.0881f;
-                flappy_bird_y += flappy_bird_velocity_y;
+                flappy_bird_velocity_y += 0.0881f * delta_time;
+                flappy_bird_y += flappy_bird_velocity_y * delta_time;
             }
             else
             {
